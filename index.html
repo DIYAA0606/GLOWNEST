@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="theme-color" content="#faf7f2"/>
+  <title>GlowNest — Glow Up Without Burnout</title>
+  <meta name="description" content="A cozy self-care companion for hostel students. No pressure, just progress."/>
+  <link rel="stylesheet" href="css/main.css"/>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌿</text></svg>"/>
+</head>
+<body>
+
+<!-- ===== TOAST CONTAINER ===== -->
+<div id="toast-container"></div>
+
+<!-- ===== LANDING PAGE ===== -->
+<div id="page-landing" class="landing page">
+
+  <!-- Landing Nav -->
+  <nav class="landing-nav">
+    <div class="landing-logo">🌿 GlowNest</div>
+    <div class="landing-nav-btns">
+      <button class="btn btn-ghost btn-sm" onclick="navigate('dashboard')">Dashboard</button>
+      <button class="btn btn-primary btn-sm" id="landing-start">Get Started</button>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <div class="floating-badge">✨ For hostel students, with love</div>
+      <h1>Glow Up<br/><em>Without</em> Burnout.</h1>
+      <p class="hero-sub">A cozy self-care companion that meets you where you are — tired, stressed, or just okay. No guilt, ever.</p>
+      <div class="hero-btns">
+        <button class="btn btn-primary" id="hero-cta">Start Glowing 🌿</button>
+        <a href="#features" class="btn btn-outline">See Features</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="features-section" id="features">
+    <div class="reveal">
+      <div class="badge badge-accent mb-8">What's inside</div>
+      <h2>Everything you need.<br/>Nothing you don't.</h2>
+    </div>
+    <div class="features-grid reveal">
+      <div class="feature-card">
+        <div class="feature-icon">📊</div>
+        <h4>Habit Tracker</h4>
+        <p>Weekly goals, not daily streaks. Because life is inconsistent and that's okay.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">💧</div>
+        <h4>Hydration Log</h4>
+        <p>Tap to track. Watch your plant grow as you drink more water.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🌙</div>
+        <h4>Mood Tracking</h4>
+        <p>Log how you feel. The app adapts to support you — not lecture you.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🏡</div>
+        <h4>Bad Day Mode</h4>
+        <p>Feeling low? Activate gentle mode. Tiny goals, big comfort, zero pressure.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🎁</div>
+        <h4>Reward System</h4>
+        <p>Unlock cozy room upgrades, pets, and beautiful themes as you grow.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🥗</div>
+        <h4>Hostel Wellness</h4>
+        <p>Realistic, budget-friendly food tips made for actual hostel life.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📈</div>
+        <h4>Analytics</h4>
+        <p>Aesthetic habit heatmaps and mood charts — pretty, not corporate.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🎨</div>
+        <h4>Themes</h4>
+        <p>Rainy Evening, Matcha Morning, Late Night Healing — unlock what resonates.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mood Support Preview -->
+  <section style="padding:40px 24px;max-width:800px;margin:0 auto">
+    <div class="reveal">
+      <div class="badge badge-accent mb-8">Emotionally designed</div>
+      <h2>The app that gets it.</h2>
+      <p class="text-muted mt-8" style="max-width:400px">GlowNest knows that hostel life is hard. Bad days happen. Instead of guilt, you get a hug — digitally.</p>
+    </div>
+    <div class="grid-2 mt-20 reveal">
+      <div class="bad-day-banner" style="flex-direction:column;align-items:flex-start">
+        <div style="font-size:1.8rem;margin-bottom:8px">💜</div>
+        <div style="font-weight:600;margin-bottom:4px">Bad Day Mode is on</div>
+        <div class="text-sm text-muted">Today, your only goals are:</div>
+        <div class="mt-8 flex flex-col gap-8">
+          <div class="badge">💧 Drink water</div>
+          <div class="badge">🧴 Wash your face</div>
+          <div class="badge">🛏️ Rest when tired</div>
+        </div>
+      </div>
+      <div class="quote-card">
+        <div class="quote-text">You don't have to be productive today. Rest is not lazy — it's maintenance.</div>
+        <div class="quote-author">— GlowNest</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="testimonials-section">
+    <div class="reveal">
+      <div class="badge badge-accent mb-8">Hostel students love it</div>
+      <h2>Real talk from real rooms.</h2>
+    </div>
+    <div class="testimonials-grid reveal">
+      <div class="testi-card">
+        <div class="testi-header">
+          <div class="testi-avatar">🧕</div>
+          <div>
+            <div class="testi-name">Priya, 2nd Year</div>
+            <div class="testi-tag">Engineering Hostel, Pune</div>
+          </div>
+        </div>
+        <div class="testi-text">"I tried every habit app. They all made me feel guilty. GlowNest is the first one that felt like a friend, not a manager."</div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-header">
+          <div class="testi-avatar">🧑</div>
+          <div>
+            <div class="testi-name">Rohan, 3rd Year</div>
+            <div class="testi-tag">Medical Student, Delhi</div>
+          </div>
+        </div>
+        <div class="testi-text">"The hydration tracker sounds simple but I actually drink water now. The little plant growing got me hooked 😭💧"</div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-header">
+          <div class="testi-avatar">👩</div>
+          <div>
+            <div class="testi-name">Ananya, 1st Year</div>
+            <div class="testi-tag">Arts College, Mumbai</div>
+          </div>
+        </div>
+        <div class="testi-text">"Bad Day Mode literally saved me during exams. Just wash your face and drink water — I could actually do that."</div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-header">
+          <div class="testi-avatar">🧔</div>
+          <div>
+            <div class="testi-name">Karthik, 4th Year</div>
+            <div class="testi-tag">IIT Hostel, Chennai</div>
+          </div>
+        </div>
+        <div class="testi-text">"The Late Night Healing theme + Rainy Evening playlist combo hits different at 2am before submissions."</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="cta-box reveal">
+      <div style="font-size:2.5rem;margin-bottom:12px">🌿</div>
+      <h2>Start your glow-up journey.</h2>
+      <p>No downloads. No sign-ups. Just you, your goals, and a lot of grace.</p>
+      <button class="btn btn-white" onclick="document.getElementById('landing-start').click()">Open GlowNest Free ✨</button>
+    </div>
+  </section>
+</div><!-- /landing -->
+
+<!-- ===== APP SHELL ===== -->
+<div class="app-shell" id="app-shell" style="display:none">
+  <!-- Sidebar (desktop) -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo">🌿 GlowNest</div>
+    <button class="nav-item" data-page="dashboard">
+      <span class="nav-icon">🏠</span> Dashboard
+    </button>
+    <button class="nav-item" data-page="habits">
+      <span class="nav-icon">✅</span> Habits
+    </button>
+    <button class="nav-item" data-page="wellness">
+      <span class="nav-icon">🥗</span> Wellness
+    </button>
+    <button class="nav-item" data-page="analytics">
+      <span class="nav-icon">📊</span> Analytics
+    </button>
+    <button class="nav-item" data-page="rewards">
+      <span class="nav-icon">🎁</span> Rewards
+    </button>
+    <div class="divider" style="margin:12px 0"></div>
+    <!-- XP indicator in sidebar -->
+    <div class="card card-sm card-flat" style="margin:0 4px">
+      <div class="text-xs text-muted mb-4">Your XP</div>
+      <div style="font-weight:700;color:var(--accent);font-size:1.1rem" id="sidebar-xp">0 XP</div>
+      <div class="progress-wrap mt-8">
+        <div class="progress-bar" id="sidebar-xp-bar" style="width:0%"></div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main content area -->
+  <div style="flex:1;overflow-x:hidden">
+
+    <!-- ===== DASHBOARD PAGE ===== -->
+    <div id="page-dashboard" class="page">
+      <div class="main-content">
+
+        <!-- Greeting -->
+        <div class="flex items-center justify-between mb-16">
+          <div>
+            <h2 id="dash-greeting" style="font-size:1.3rem">Hey there ✨</h2>
+            <p class="text-muted text-sm mt-4">How are we feeling today?</p>
+          </div>
+          <button class="btn-icon" onclick="navigate('rewards')" title="View rewards" style="font-size:1.4rem">🎁</button>
+        </div>
+
+        <!-- Bad Day Banner -->
+        <div id="bad-day-banner" class="bad-day-banner hidden mb-16">
+          <div style="font-size:1.6rem">💜</div>
+          <div>
+            <div style="font-weight:600;font-size:.95rem">Bad Day Mode</div>
+            <div class="text-sm text-muted">Today's only goals: water 💧, rest 😴, and be gentle with yourself.</div>
+          </div>
+          <button class="btn-icon btn-sm" onclick="selectMood('okay');showToast('You got this 🌿')" title="I feel better" style="margin-left:auto">✓</button>
+        </div>
+
+        <!-- Score + Quick Stats Row -->
+        <div class="grid-2 mb-16">
+          <!-- Glow Score -->
+          <div class="card flex items-center gap-12">
+            <div class="score-display" style="position:relative">
+              <svg width="90" height="90" class="ring-svg">
+                <circle class="ring-track" cx="45" cy="45" r="38" stroke-width="8"/>
+                <circle class="ring-fill" cx="45" cy="45" r="38" stroke-width="8"
+                  id="score-ring-fill"
+                  stroke-dasharray="238.76" stroke-dashoffset="238.76"/>
+              </svg>
+              <div class="score-inner">
+                <div class="score-num" id="score-num">0</div>
+                <div class="score-lbl">score</div>
+              </div>
+            </div>
+            <div>
+              <div style="font-weight:600;font-size:.95rem">Glow Score</div>
+              <div class="text-muted text-sm mt-4">Based on habits + hydration + mood</div>
+            </div>
+          </div>
+
+          <!-- Hydration -->
+          <div class="card">
+            <div class="flex items-center justify-between mb-8">
+              <span style="font-weight:600;font-size:.95rem">Hydration</span>
+              <span class="text-xs text-muted" id="hydration-count">0/8</span>
+            </div>
+            <div id="hydration-drops" class="hydration-grid"></div>
+          </div>
+        </div>
+
+        <!-- Mood Selector -->
+        <div class="card mb-16">
+          <div class="section-header">
+            <span class="section-title">How are you feeling?</span>
+            <span class="text-xs text-muted" id="mood-tip-label"></span>
+          </div>
+          <div class="mood-grid">
+            <button class="mood-btn" data-mood="tired"><span class="mood-emoji">😴</span>Tired</button>
+            <button class="mood-btn" data-mood="stressed"><span class="mood-emoji">😤</span>Stressed</button>
+            <button class="mood-btn" data-mood="overwhelmed"><span class="mood-emoji">😵</span>Too Much</button>
+            <button class="mood-btn" data-mood="okay"><span class="mood-emoji">😌</span>Okay</button>
+            <button class="mood-btn" data-mood="productive"><span class="mood-emoji">💪</span>In Flow</button>
+            <button class="mood-btn" data-mood="happy"><span class="mood-emoji">🌟</span>Happy</button>
+          </div>
+          <!-- Mood tip -->
+          <div id="mood-tip-wrap" class="card card-flat card-sm mt-12 hidden">
+            <div class="text-sm text-muted italic" id="mood-tip"></div>
+          </div>
+        </div>
+
+        <!-- Daily Quote -->
+        <div class="quote-card mb-16">
+          <div class="quote-text" id="quote-text">Loading your daily inspiration...</div>
+          <div class="quote-author" id="quote-author"></div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="section-header">
+          <span class="section-title">Quick Actions</span>
+        </div>
+        <div class="grid-2 mb-16">
+          <button class="card card-sm flex items-center gap-8" data-quick="water" style="text-align:left;width:100%">
+            <span style="font-size:1.4rem">💧</span>
+            <div>
+              <div class="text-sm" style="font-weight:500">Log Water</div>
+              <div class="text-xs text-muted">Tap to add a glass</div>
+            </div>
+          </button>
+          <button class="card card-sm flex items-center gap-8" data-quick="habit" style="text-align:left;width:100%">
+            <span style="font-size:1.4rem">✅</span>
+            <div>
+              <div class="text-sm" style="font-weight:500">Check Habits</div>
+              <div class="text-xs text-muted">Track your week</div>
+            </div>
+          </button>
+          <button class="card card-sm flex items-center gap-8" data-quick="wellness" style="text-align:left;width:100%">
+            <span style="font-size:1.4rem">🥗</span>
+            <div>
+              <div class="text-sm" style="font-weight:500">Meal Ideas</div>
+              <div class="text-xs text-muted">Hostel-friendly eats</div>
+            </div>
+          </button>
+          <button class="card card-sm flex items-center gap-8" onclick="navigate('analytics')" style="text-align:left;width:100%">
+            <span style="font-size:1.4rem">📊</span>
+            <div>
+              <div class="text-sm" style="font-weight:500">My Progress</div>
+              <div class="text-xs text-muted">See your trends</div>
+            </div>
+          </button>
+        </div>
+
+        <!-- Weekly Snapshot -->
+        <div class="card mb-16">
+          <div class="section-header">
+            <span class="section-title">This Week's Habits</span>
+            <button class="btn btn-ghost btn-sm" onclick="navigate('habits')">See all →</button>
+          </div>
+          <div id="weekly-snapshot"></div>
+        </div>
+
+        <!-- Bad Day Tiny Goals -->
+        <div id="bad-day-goals" class="card mb-16 hidden" style="border:2px solid rgba(155,126,184,0.4)">
+          <div class="section-header">
+            <span class="section-title">💜 Today's Gentle Goals</span>
+          </div>
+          <div class="flex flex-col gap-8">
+            <div class="wellness-tip">
+              <span class="tip-icon">💧</span>
+              <div class="tip-body"><h5>Drink one glass of water</h5><p>Just one. That's already a win.</p></div>
+            </div>
+            <div class="wellness-tip">
+              <span class="tip-icon">🧴</span>
+              <div class="tip-body"><h5>Wash your face</h5><p>Cold water = instant mood reset.</p></div>
+            </div>
+            <div class="wellness-tip">
+              <span class="tip-icon">🧘</span>
+              <div class="tip-body"><h5>Stretch for 2 minutes</h5><p>Roll your shoulders. Breathe out.</p></div>
+            </div>
+            <div class="wellness-tip">
+              <span class="tip-icon">🛏️</span>
+              <div class="tip-body"><h5>Sleep before midnight</h5><p>Rest is your biggest superpower today.</p></div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /main-content -->
+    </div><!-- /dashboard -->
+
+    <!-- ===== HABITS PAGE ===== -->
+    <div id="page-habits" class="page">
+      <div class="main-content">
+        <div class="flex items-center justify-between mb-16">
+          <div>
+            <h2 style="font-size:1.3rem">Weekly Habits ✅</h2>
+            <p class="text-muted text-sm mt-4">Consistency over perfection, always.</p>
+          </div>
+          <button class="btn btn-primary btn-sm" id="add-habit-btn">+ Add</button>
+        </div>
+
+        <!-- Week summary ring -->
+        <div class="card mb-16" id="habit-week-summary"></div>
+
+        <!-- Habits list -->
+        <div class="flex flex-col gap-12" id="habit-list">
+          <div class="text-center text-muted" style="padding:40px">Loading habits...</div>
+        </div>
+
+        <!-- Tips -->
+        <div class="card card-flat mt-20">
+          <div class="text-sm text-muted italic text-center">
+            💡 Weekly targets, not daily streaks. Miss a day? Still making progress ✨
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== WELLNESS PAGE ===== -->
+    <div id="page-wellness" class="page">
+      <div class="main-content">
+        <div class="mb-16">
+          <h2 style="font-size:1.3rem">Hostel Wellness 🥗</h2>
+          <p class="text-muted text-sm mt-4">Real food ideas for real hostel life.</p>
+        </div>
+
+        <!-- Easy Breakfasts -->
+        <div class="section-header">
+          <span class="section-title">🌅 Easy Breakfasts</span>
+        </div>
+        <div class="flex flex-col gap-10 mb-20" id="wellness-breakfast"></div>
+
+        <!-- Budget Snacks -->
+        <div class="section-header">
+          <span class="section-title">🍿 Budget Snacks</span>
+        </div>
+        <div class="flex flex-col gap-10 mb-20" id="wellness-snacks"></div>
+
+        <!-- Healthier Alternatives -->
+        <div class="section-header">
+          <span class="section-title">🔄 Swap This For That</span>
+        </div>
+        <div class="flex flex-col gap-10 mb-20" id="wellness-alternatives"></div>
+
+        <!-- Meal Prep -->
+        <div class="section-header">
+          <span class="section-title">📦 Prep Like a Pro</span>
+        </div>
+        <div class="flex flex-col gap-10 mb-20" id="wellness-prep"></div>
+
+        <!-- Reminder -->
+        <div class="quote-card">
+          <div class="quote-text">You don't need to eat perfectly. Eat better than yesterday.</div>
+          <div class="quote-author">— GlowNest Wellness</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== ANALYTICS PAGE ===== -->
+    <div id="page-analytics" class="page">
+      <div class="main-content">
+        <div class="mb-16">
+          <h2 style="font-size:1.3rem">Your Journey 📊</h2>
+          <p class="text-muted text-sm mt-4">Aesthetic insights into your glow-up.</p>
+        </div>
+
+        <!-- Consistency Score -->
+        <div class="card mb-16">
+          <div class="section-title mb-12">Weekly Consistency</div>
+          <div id="consistency-score" class="text-center" style="padding:12px"></div>
+        </div>
+
+        <!-- Mood Chart -->
+        <div class="card mb-16">
+          <div class="section-title mb-16">Mood This Week</div>
+          <div id="mood-chart"></div>
+        </div>
+
+        <!-- Hydration Chart -->
+        <div class="card mb-16">
+          <div class="section-title mb-16">Hydration Trend 💧</div>
+          <div id="hydration-chart"></div>
+        </div>
+
+        <!-- Habit Heatmap -->
+        <div class="card mb-16">
+          <div class="section-title mb-16">Habit Heatmap (4 weeks)</div>
+          <div id="habit-heatmap"></div>
+          <div class="flex items-center gap-8 mt-12">
+            <div class="text-xs text-muted">Less</div>
+            <div style="width:16px;height:16px;background:var(--bg2);border-radius:3px"></div>
+            <div style="width:16px;height:16px;background:var(--accent2);border-radius:3px"></div>
+            <div style="width:16px;height:16px;background:var(--accent);border-radius:3px"></div>
+            <div style="width:16px;height:16px;background:var(--accent3);border-radius:3px"></div>
+            <div class="text-xs text-muted">More</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== REWARDS PAGE ===== -->
+    <div id="page-rewards" class="page">
+      <div class="main-content">
+        <div class="flex items-center justify-between mb-16">
+          <div>
+            <h2 style="font-size:1.3rem">Your Rewards 🎁</h2>
+            <p class="text-muted text-sm mt-4">Every healthy choice unlocks something cozy.</p>
+          </div>
+          <div class="badge badge-accent" id="xp-display">0 XP</div>
+        </div>
+
+        <!-- XP Info -->
+        <div class="card card-flat card-sm mb-16">
+          <div class="text-sm text-muted">
+            💡 Earn XP by logging moods (+5), completing habits (+5–25), and staying hydrated (+10). Use XP to unlock themes and room upgrades!
+          </div>
+        </div>
+
+        <!-- Rewards grid -->
+        <div class="section-title mb-12">Collectibles</div>
+        <div class="reward-grid mb-20" id="rewards-grid"></div>
+
+        <!-- Theme Picker -->
+        <div class="card mb-16">
+          <div class="section-title mb-16">🎨 Themes</div>
+          <div class="theme-grid" id="theme-grid"></div>
+        </div>
+
+        <!-- Progress to next unlock -->
+        <div class="card" id="next-unlock-card">
+          <div class="section-title mb-8">Next Unlock</div>
+          <div id="next-unlock-info" class="text-sm text-muted"></div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /main area -->
+</div><!-- /app-shell -->
+
+<!-- ===== BOTTOM NAV (mobile) ===== -->
+<div class="bottom-nav" id="bottom-nav" style="display:none">
+  <nav>
+    <button class="nav-item" data-page="dashboard">
+      <span class="nav-icon">🏠</span>
+      <span>Home</span>
+    </button>
+    <button class="nav-item" data-page="habits">
+      <span class="nav-icon">✅</span>
+      <span>Habits</span>
+    </button>
+    <button class="nav-item" data-page="wellness">
+      <span class="nav-icon">🥗</span>
+      <span>Wellness</span>
+    </button>
+    <button class="nav-item" data-page="analytics">
+      <span class="nav-icon">📊</span>
+      <span>Stats</span>
+    </button>
+    <button class="nav-item" data-page="rewards">
+      <span class="nav-icon">🎁</span>
+      <span>Rewards</span>
+    </button>
+  </nav>
+</div>
+
+<!-- ===== MODALS ===== -->
+
+<!-- Onboarding -->
+<div class="modal-backdrop" id="modal-onboard">
+  <div class="modal" style="border-radius:var(--r-lg);margin:20px;max-width:480px">
+    <div class="modal-handle"></div>
+    <div class="text-center mb-20">
+      <div style="font-size:3rem;margin-bottom:12px">🌿</div>
+      <h2 style="font-size:1.5rem;margin-bottom:8px">Welcome to GlowNest</h2>
+      <p class="text-muted text-sm">A cozy space for your glow-up journey. No pressure, ever.</p>
+    </div>
+    <div class="mb-16">
+      <label class="text-sm text-muted mb-8" style="display:block">What should we call you?</label>
+      <input type="text" id="name-input" placeholder="Your name or nickname..." maxlength="30"
+        style="font-size:1rem;padding:14px 16px"/>
+    </div>
+    <button class="btn btn-primary full-w" id="save-name-btn" style="justify-content:center">
+      Let's glow 🌿
+    </button>
+    <div class="text-center mt-12">
+      <button class="btn btn-ghost btn-sm" onclick="Store.set('returning',true);closeModal('modal-onboard');navigate('dashboard')">
+        Skip for now
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Mood Modal -->
+<div class="modal-backdrop" id="modal-mood">
+  <div class="modal">
+    <div class="modal-handle"></div>
+    <h3 style="margin-bottom:16px">How are you feeling? 💭</h3>
+    <div class="mood-grid">
+      <button class="mood-btn" data-mood="tired"><span class="mood-emoji">😴</span>Tired</button>
+      <button class="mood-btn" data-mood="stressed"><span class="mood-emoji">😤</span>Stressed</button>
+      <button class="mood-btn" data-mood="overwhelmed"><span class="mood-emoji">😵</span>Too Much</button>
+      <button class="mood-btn" data-mood="okay"><span class="mood-emoji">😌</span>Okay</button>
+      <button class="mood-btn" data-mood="productive"><span class="mood-emoji">💪</span>In Flow</button>
+      <button class="mood-btn" data-mood="happy"><span class="mood-emoji">🌟</span>Happy</button>
+    </div>
+    <button class="btn btn-ghost full-w mt-16" style="justify-content:center" onclick="closeModal('modal-mood')">
+      Maybe later
+    </button>
+  </div>
+</div>
+
+<!-- Add/Edit Habit Modal -->
+<div class="modal-backdrop" id="modal-habit">
+  <div class="modal">
+    <div class="modal-handle"></div>
+    <h3 id="habit-form-title" style="margin-bottom:20px">New Habit</h3>
+
+    <div class="mb-16">
+      <label class="text-sm text-muted mb-8" style="display:block">Habit Name</label>
+      <input type="text" id="habit-name-inp" placeholder="e.g. Sleep before 1am" maxlength="50"/>
+    </div>
+
+    <div class="grid-2 mb-16">
+      <div>
+        <label class="text-sm text-muted mb-8" style="display:block">Weekly Target (days)</label>
+        <input type="number" id="habit-target-inp" min="1" max="7" value="4" style="text-align:center;font-size:1.1rem;font-weight:600"/>
+      </div>
+      <div>
+        <label class="text-sm text-muted mb-8" style="display:block">Emoji</label>
+        <select id="habit-emoji-sel" style="font-size:1.2rem;text-align:center;cursor:pointer"></select>
+      </div>
+    </div>
+
+    <div class="card card-flat card-sm mb-16 text-sm text-muted">
+      💡 Weekly target means you aim to do it <em>X times this week</em> — not every single day!
+    </div>
+
+    <button class="btn btn-primary full-w" id="save-habit-btn" style="justify-content:center">Save Habit ✨</button>
+    <button class="btn btn-ghost full-w mt-8" style="justify-content:center" onclick="closeModal('modal-habit')">Cancel</button>
+  </div>
+</div>
+
+<!-- Scripts -->
+<script src="js/core.js"></script>
+<script src="js/dashboard.js"></script>
+<script src="js/habits.js"></script>
+<script src="js/features.js"></script>
+
+<script>
+// ===== Extra wiring that touches multiple modules =====
+
+// Landing page: hide app shell when on landing
+window.addEventListener('pagechange', function(e) {
+  const isLanding = e.detail === 'landing';
+  const appShell = document.getElementById('app-shell');
+  const bottomNav = document.getElementById('bottom-nav');
+  const sidebar = document.getElementById('sidebar');
+
+  if (appShell) appShell.style.display = isLanding ? 'none' : 'flex';
+  if (bottomNav) bottomNav.style.display = isLanding ? 'none' : 'flex';
+  // Sidebar is shown via CSS media query (display:flex at 768px+), just remove the none
+  if (sidebar) sidebar.style.display = isLanding ? 'none' : '';
+
+  // XP sidebar update
+  if (!isLanding) {
+    const xpEl = document.getElementById('sidebar-xp');
+    const xpBar = document.getElementById('sidebar-xp-bar');
+    if (xpEl) xpEl.textContent = (State.xp || 0) + ' XP';
+    if (xpBar) {
+      // Max XP for bar = 1000
+      xpBar.style.width = Math.min((State.xp || 0) / 10, 100) + '%';
+    }
+  }
+
+  // Bad day goals toggle
+  const bdGoals = document.getElementById('bad-day-goals');
+  if (bdGoals && e.detail === 'dashboard') {
+    bdGoals.classList.toggle('hidden', !State.badDay);
+  }
+});
+
+// Mood tip visibility
+window.addEventListener('pagechange', function(e) {
+  if (e.detail === 'dashboard') {
+    const wrap = document.getElementById('mood-tip-wrap');
+    if (wrap) wrap.classList.toggle('hidden', !State.mood);
+  }
+});
+
+// Next unlock reward info
+window.addEventListener('pagechange', function(e) {
+  if (e.detail === 'rewards') {
+    const xp = State.xp;
+    const next = Object.entries(THEMES)
+      .concat(REWARDS.map(r => [r.id, { xp: r.xp, name: r.name, emoji: r.emoji }]))
+      .filter(([,v]) => v.xp > xp)
+      .sort((a,b) => a[1].xp - b[1].xp)[0];
+    const el = document.getElementById('next-unlock-info');
+    if (el && next) {
+      const needed = next[1].xp - xp;
+      el.innerHTML = `<div class="flex items-center gap-8 mb-8">
+        <span style="font-size:1.4rem">${next[1].emoji || '🎨'}</span>
+        <div><div style="font-weight:600">${next[1].name}</div>
+        <div class="text-xs text-muted">${needed} XP away</div></div>
+      </div>
+      <div class="progress-wrap"><div class="progress-bar" style="width:${Math.round((xp/next[1].xp)*100)}%"></div></div>`;
+    } else if (el) {
+      el.textContent = '🎉 You\'ve unlocked everything! You\'re glowing!';
+    }
+  }
+});
+
+// App shell visibility is now controlled entirely by the pagechange event listener above.
+// No DOMContentLoaded hide needed — the CSS default (display:none on #app-shell and
+// #bottom-nav via the style attribute in HTML) handles the initial hidden state.
+</script>
+</body>
+</html>
