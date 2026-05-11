@@ -190,6 +190,12 @@
     <button class="nav-item" data-page="wellness">
       <span class="nav-icon">🥗</span> Wellness
     </button>
+    <button class="nav-item" data-page="fitness">
+  <span class="nav-icon">🏃</span> Fitness
+</button>
+<button class="nav-item" data-page="schedule">
+  <span class="nav-icon">🗓️</span> Schedule
+</button>
     <button class="nav-item" data-page="analytics">
       <span class="nav-icon">📊</span> Analytics
     </button>
@@ -213,7 +219,21 @@
     <!-- ===== DASHBOARD PAGE ===== -->
     <div id="page-dashboard" class="page">
       <div class="main-content">
-
+<!-- Today Strip -->
+<div class="today-strip" id="today-strip">
+  <h3>✨ Today's Focus</h3>
+  <div id="today-encouragement" class="text-sm text-muted mb-12 italic"></div>
+  <div class="today-actions">
+    <button class="today-pill" id="today-water" onclick="logWater(State.hydration+1);this.classList.add('done');this.textContent='💧 Logged!'">💧 Log Water</button>
+    <button class="today-pill" onclick="openModal('modal-mood')">😌 Log Mood</button>
+    <button class="today-pill" id="today-reset" onclick="resetTodayFocus()">🔄 Reset</button>
+  </div>
+  <div class="mt-12 flex gap-8" id="today-wins"></div>
+</div>
+<!-- <div class="card card-flat card-sm mb-16 flex items-center gap-10">
+  <span style="font-size:1.3rem">💡</span>
+  <span class="text-sm text-muted italic" id="daily-tip-text"></span>
+</div> -->
         <!-- Greeting -->
         <div class="flex items-center justify-between mb-16">
           <div>
@@ -232,6 +252,15 @@
           </div>
           <button class="btn-icon btn-sm" onclick="selectMood('okay');showToast('You got this 🌿')" title="I feel better" style="margin-left:auto">✓</button>
         </div>
+        <!-- Emergency Modes -->
+<div class="card mb-16">
+  <div class="section-header">
+    <span class="section-title">🆘 Need help right now?</span>
+    <span class="text-xs text-muted">No judgment.</span>
+  </div>
+  <div class="emergency-grid" id="emergency-grid"></div>
+  <div id="emergency-panel" class="hidden"></div>
+</div>
 
         <!-- Score + Quick Stats Row -->
         <div class="grid-2 mb-16">
@@ -393,36 +422,47 @@
 
     <!-- ===== WELLNESS PAGE ===== -->
     <div id="page-wellness" class="page">
+      
       <div class="main-content">
+        <!-- Diet preference toggle -->
+<div class="flex items-center gap-8 mb-20" style="background:var(--bg2);border-radius:50px;padding:4px;width:fit-content">
+  <button class="btn btn-sm diet-toggle-btn btn-primary" data-diet="veg" onclick="setDietPref('veg')" style="border-radius:50px">🥦 Veg</button>
+  <button class="btn btn-sm diet-toggle-btn" data-diet="nonveg" onclick="setDietPref('nonveg')" style="border-radius:50px">🍗 Non-Veg</button>
+</div>
         <div class="mb-16">
           <h2 style="font-size:1.3rem">Hostel Wellness 🥗</h2>
           <p class="text-muted text-sm mt-4">Real food ideas for real hostel life.</p>
         </div>
-
+        
         <!-- Easy Breakfasts -->
         <div class="section-header">
           <span class="section-title">🌅 Easy Breakfasts</span>
         </div>
-        <div class="flex flex-col gap-10 mb-20" id="wellness-breakfast"></div>
+        <div class="swipe-row mb-20" id="wellness-breakfast"></div>
 
         <!-- Budget Snacks -->
         <div class="section-header">
           <span class="section-title">🍿 Budget Snacks</span>
         </div>
-        <div class="flex flex-col gap-10 mb-20" id="wellness-snacks"></div>
+        <div class="swipe-row mb-20" id="wellness-snacks"></div>
 
         <!-- Healthier Alternatives -->
         <div class="section-header">
           <span class="section-title">🔄 Swap This For That</span>
         </div>
-        <div class="flex flex-col gap-10 mb-20" id="wellness-alternatives"></div>
+        <div class="swipe-row mb-20" id="wellness-alternatives"></div>
 
         <!-- Meal Prep -->
         <div class="section-header">
           <span class="section-title">📦 Prep Like a Pro</span>
         </div>
-        <div class="flex flex-col gap-10 mb-20" id="wellness-prep"></div>
-
+        <div class="swipe-row mb-20" id="wellness-prep"></div>
+<!-- Actually Yummy Hostel Food -->
+<div class="section-header">
+  <span class="section-title">😋 Actually Yummy Hostel Food</span>
+</div>
+<p class="text-muted text-sm mb-12">No guilt. Just good food in hostel conditions.</p>
+<div class="swipe-row mb-20" id="wellness-yummy"></div>
         <!-- Reminder -->
         <div class="quote-card">
           <div class="quote-text">You don't need to eat perfectly. Eat better than yesterday.</div>
@@ -430,6 +470,112 @@
         </div>
       </div>
     </div>
+    <!-- ===== FITNESS PAGE ===== -->
+<div id="page-fitness" class="page">
+  <div class="main-content">
+    <div class="page-header-grad mb-16">
+      <h2 style="font-size:1.3rem">Hostel Fitness 🏃</h2>
+      <p class="text-muted text-sm mt-4">No gym. No equipment. Just your room and 10 minutes.</p>
+    </div>
+
+    <!-- Energy filter -->
+    <div class="flex gap-8 mb-20" id="fitness-filter" style="flex-wrap:wrap">
+      <button class="btn btn-sm fit-filter-btn btn-primary" data-filter="all" onclick="filterFitness('all')">All</button>
+      <button class="btn btn-sm fit-filter-btn" data-filter="low" onclick="filterFitness('low')">😴 Low Energy</button>
+      <button class="btn btn-sm fit-filter-btn" data-filter="medium" onclick="filterFitness('medium')">🟡 Medium</button>
+      <button class="btn btn-sm fit-filter-btn" data-filter="stretch" onclick="filterFitness('stretch')">🧘 Stretch</button>
+      <button class="btn btn-sm fit-filter-btn" data-filter="exam" onclick="filterFitness('exam')">📚 Exam Week</button>
+    </div>
+
+    <div class="flex flex-col gap-12" id="fitness-list"></div>
+
+    <div class="card card-flat mt-20 text-center">
+      <div class="text-sm text-muted italic">💡 Movement is medicine. Even 5 minutes counts. ✨</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SCHEDULE PAGE ===== -->
+<div id="page-schedule" class="page">
+  <div class="main-content">
+    <div class="page-header-grad mb-16">
+      <h2 style="font-size:1.3rem">Daily Blueprint 🗓️</h2>
+      <p class="text-muted text-sm mt-4">Build your realistic hostel survival schedule.</p>
+    </div>
+
+    <!-- Builder form -->
+    <div class="card mb-16" id="schedule-builder">
+      <div class="section-title mb-16">Tell us about your day</div>
+
+      <div class="grid-2 mb-12">
+        <div>
+          <label class="text-sm text-muted mb-4" style="display:block">Wake up time</label>
+          <input type="time" id="sch-wake" value="07:00"/>
+        </div>
+        <div>
+          <label class="text-sm text-muted mb-4" style="display:block">Sleep time</label>
+          <input type="time" id="sch-sleep" value="23:00"/>
+        </div>
+      </div>
+
+      <div class="grid-2 mb-12">
+        <div>
+          <label class="text-sm text-muted mb-4" style="display:block">Classes start</label>
+          <input type="time" id="sch-class-start" value="09:00"/>
+        </div>
+        <div>
+          <label class="text-sm text-muted mb-4" style="display:block">Classes end</label>
+          <input type="time" id="sch-class-end" value="17:00"/>
+        </div>
+      </div>
+
+      <div class="mb-12">
+        <label class="text-sm text-muted mb-4" style="display:block">Study preference</label>
+        <select id="sch-study">
+          <option value="morning">Morning person 🌅</option>
+          <option value="evening">Evening grinder 🌇</option>
+          <option value="night">Night owl 🌙</option>
+        </select>
+      </div>
+
+      <div class="mb-12">
+        <label class="text-sm text-muted mb-4" style="display:block">Workout preference</label>
+        <select id="sch-workout">
+          <option value="morning">Morning movement</option>
+          <option value="evening">Evening workout</option>
+          <option value="none">Not right now</option>
+        </select>
+      </div>
+
+      <div class="mb-16">
+        <label class="text-sm text-muted mb-8" style="display:block">Include skincare routine?</label>
+        <div class="flex gap-8">
+          <label class="flex items-center gap-8 text-sm"><input type="radio" name="sch-skin" value="yes" checked/> Yes ✨</label>
+          <label class="flex items-center gap-8 text-sm"><input type="radio" name="sch-skin" value="no"/> Not now</label>
+        </div>
+      </div>
+
+      <button class="btn btn-primary full-w" style="justify-content:center" onclick="generateSchedule()">
+        Generate My Blueprint ✨
+      </button>
+    </div>
+
+    <!-- Generated schedule output -->
+    <div id="schedule-output" class="hidden">
+      <div class="flex items-center justify-between mb-12">
+        <div class="section-title">Your Daily Blueprint</div>
+        <button class="btn btn-outline btn-sm" onclick="printSchedule()">🖨️ Print</button>
+      </div>
+      <div id="schedule-cards" class="flex flex-col gap-8"></div>
+      <div class="card card-flat mt-16 text-center">
+        <div class="text-sm text-muted italic">This is a guide, not a rule. Adjust freely. 🌿</div>
+      </div>
+      <button class="btn btn-ghost full-w mt-12" style="justify-content:center" onclick="document.getElementById('schedule-output').classList.add('hidden');document.getElementById('schedule-builder').classList.remove('hidden')">
+        ← Rebuild Schedule
+      </button>
+    </div>
+  </div>
+</div>
 
     <!-- ===== ANALYTICS PAGE ===== -->
     <div id="page-analytics" class="page">
@@ -444,7 +590,11 @@
           <div class="section-title mb-12">Weekly Consistency</div>
           <div id="consistency-score" class="text-center" style="padding:12px"></div>
         </div>
-
+<!-- Insights -->
+<div class="card mb-16">
+  <div class="section-title mb-12">💡 Personal Insights</div>
+  <div id="analytics-insights"></div>
+</div>
         <!-- Mood Chart -->
         <div class="card mb-16">
           <div class="section-title mb-16">Mood This Week</div>
@@ -513,30 +663,11 @@
 </div><!-- /app-shell -->
 
 <!-- ===== BOTTOM NAV (mobile) ===== -->
-<div class="bottom-nav" id="bottom-nav" style="display:none">
-  <nav>
-    <button class="nav-item" data-page="dashboard">
-      <span class="nav-icon">🏠</span>
-      <span>Home</span>
-    </button>
-    <button class="nav-item" data-page="habits">
-      <span class="nav-icon">✅</span>
-      <span>Habits</span>
-    </button>
-    <button class="nav-item" data-page="wellness">
-      <span class="nav-icon">🥗</span>
-      <span>Wellness</span>
-    </button>
-    <button class="nav-item" data-page="analytics">
-      <span class="nav-icon">📊</span>
-      <span>Stats</span>
-    </button>
-    <button class="nav-item" data-page="rewards">
-      <span class="nav-icon">🎁</span>
-      <span>Rewards</span>
-    </button>
-  </nav>
-</div>
+<button class="nav-item" data-page="dashboard"><span class="nav-icon">🏠</span><span>Home</span></button>
+<button class="nav-item" data-page="habits"><span class="nav-icon">✅</span><span>Habits</span></button>
+<button class="nav-item" data-page="fitness"><span class="nav-icon">🏃</span><span>Fitness</span></button>
+<button class="nav-item" data-page="wellness"><span class="nav-icon">🥗</span><span>Food</span></button>
+<button class="nav-item" data-page="schedule"><span class="nav-icon">🗓️</span><span>Schedule</span></button>
 
 <!-- ===== MODALS ===== -->
 
@@ -605,6 +736,15 @@
         <select id="habit-emoji-sel" style="font-size:1.2rem;text-align:center;cursor:pointer"></select>
       </div>
     </div>
+    <div class="mb-16">
+  <label class="text-sm text-muted mb-8" style="display:block">Habit Type</label>
+  <select id="habit-type-inp">
+    <option value="binary">☑ Binary (did it or not)</option>
+    <option value="count">🔢 Count (reps/glasses/etc)</option>
+    <option value="timer">⏱ Timer (minutes-based)</option>
+    <option value="flex">🌊 Flexible (loose goal)</option>
+  </select>
+</div>
 
     <div class="card card-flat card-sm mb-16 text-sm text-muted">
       💡 Weekly target means you aim to do it <em>X times this week</em> — not every single day!
@@ -638,6 +778,9 @@ window.addEventListener('pagechange', function(e) {
 
   // XP sidebar update
   if (!isLanding) {
+    // Show FAB on mobile when in app
+  const fab = document.getElementById('fab-wrap');
+  if (fab) fab.style.display = isLanding ? 'none' : 'flex';
     const xpEl = document.getElementById('sidebar-xp');
     const xpBar = document.getElementById('sidebar-xp-bar');
     if (xpEl) xpEl.textContent = (State.xp || 0) + ' XP';
@@ -685,9 +828,23 @@ window.addEventListener('pagechange', function(e) {
   }
 });
 
-// App shell visibility is now controlled entirely by the pagechange event listener above.
-// No DOMContentLoaded hide needed — the CSS default (display:none on #app-shell and
-// #bottom-nav via the style attribute in HTML) handles the initial hidden state.
+document.addEventListener('DOMContentLoaded', function() {
+  // Init diet toggle visual state from saved preference
+  const dietPref = Store.get('dietPref', 'veg');
+  document.querySelectorAll('.diet-toggle-btn').forEach(b =>
+    b.classList.toggle('btn-primary', b.dataset.diet === dietPref)
+  );
+});
+
 </script>
+<!-- Floating Action Button (mobile only) -->
+<div class="fab-wrap" id="fab-wrap" style="display:none">
+  <div class="fab-actions" id="fab-actions">
+    <button class="fab-action-btn" onclick="logWater(State.hydration+1);closeFab()"><span>💧</span> Log Water</button>
+    <button class="fab-action-btn" onclick="openModal('modal-mood');closeFab()"><span>😌</span> Log Mood</button>
+    <button class="fab-action-btn" onclick="navigate('habits');closeFab()"><span>✅</span> Add Habit</button>
+  </div>
+  <button class="fab-main" id="fab-btn" onclick="toggleFab()">＋</button>
+</div>
 </body>
 </html>

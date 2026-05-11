@@ -46,29 +46,36 @@ function renderHabits() {
     return;
   }
 
-  list.innerHTML = habits.map((h, i) => {
-    const done = (h.completions[wk] || 0);
-    const pct = Math.min(Math.round((done / h.target) * 100), 100);
+ list.innerHTML = habits.map((h, i) => {
+    const done      = (h.completions[wk] || 0);
+    const pct       = Math.min(Math.round((done / h.target) * 100), 100);
     const completed = done >= h.target;
+    const type      = h.type || 'binary';
+    const TYPE_LABEL = { binary:'☑ Binary', count:'🔢 Count', timer:'⏱ Timer', flex:'🌊 Flexible' };
+    const TYPE_CLS   = { binary:'', count:'htype-count', timer:'htype-timer', flex:'htype-flex' };
+    const typeLabel  = TYPE_LABEL[type] || TYPE_LABEL.binary;
+    const typeCls    = TYPE_CLS[type]   || '';
     return `
-    <div class="habit-item${completed ? ' completed-habit' : ''}" data-id="${h.id}">
-      <div class="habit-check${completed ? ' done' : ''}" onclick="toggleHabitDay('${h.id}')">
-        ${completed ? '✓' : ''}
-      </div>
-      <div class="habit-info">
-        <div class="habit-name">${h.emoji} ${h.name}</div>
-        <div class="habit-meta">${done}/${h.target} this week
-          ${completed ? '<span class="badge badge-accent" style="margin-left:6px">✨ Done!</span>' : ''}
-        </div>
-        <div class="progress-wrap mt-8" style="height:6px">
-          <div class="progress-bar" style="width:${pct}%"></div>
-        </div>
-      </div>
-      <div class="habit-actions">
-        <button class="btn-icon" style="width:32px;height:32px;font-size:.85rem" onclick="editHabit(${i})" title="Edit">✏️</button>
-        <button class="btn-icon" style="width:32px;height:32px;font-size:.85rem" onclick="deleteHabit('${h.id}')" title="Delete">🗑️</button>
-      </div>
-    </div>`;
+<div class="habit-item${completed ? ' completed-habit' : ''}" data-id="${h.id}">
+  <div class="habit-check${completed ? ' done' : ''}" onclick="toggleHabitDay('${h.id}')">
+    ${completed ? '✓' : ''}
+  </div>
+  <div class="habit-info">
+    <div class="habit-name">${h.emoji} ${h.name}</div>
+    <div class="flex items-center gap-8 mt-4">
+      <span class="habit-meta">${done}/${h.target} this week</span>
+      <span class="htype-badge ${typeCls}">${typeLabel}</span>
+      ${completed ? '<span class="badge badge-accent">✨ Done!</span>' : ''}
+    </div>
+    <div class="progress-wrap mt-8" style="height:6px">
+      <div class="progress-bar" style="width:${pct}%"></div>
+    </div>
+  </div>
+  <div class="habit-actions">
+    <button class="btn-icon" style="width:32px;height:32px;font-size:.85rem" onclick="editHabit(${i})" title="Edit">✏️</button>
+    <button class="btn-icon" style="width:32px;height:32px;font-size:.85rem" onclick="deleteHabit('${h.id}')" title="Delete">🗑️</button>
+  </div>
+</div>`;
   }).join('');
 
   // Update weekly overview
@@ -78,25 +85,39 @@ function renderHabits() {
 // ===== TOGGLE DAILY COMPLETION =====
 function toggleHabitDay(id) {
   const habits = getHabits();
-  const wk = weekKey();
-  const habit = habits.find(h => h.id === id);
+  const wk     = weekKey();
+  const habit  = habits.find(h => h.id === id);
   if (!habit) return;
   if (!habit.completions) habit.completions = {};
-  const cur = habit.completions[wk] || 0;
+
+  const cur  = habit.completions[wk] || 0;
+  const checkEl = document.querySelector(`[data-id="${id}"] .habit-check`);
+
   if (cur < habit.target) {
     habit.completions[wk] = cur + 1;
     const done = habit.completions[wk];
+
+    // Micro dopamine burst
+    if (checkEl) {
+      checkEl.classList.add('burst');
+      setTimeout(() => checkEl.classList.remove('burst'), 400);
+      const r = checkEl.getBoundingClientRect();
+      if (typeof confettiBurst === 'function') confettiBurst(r.left + r.width / 2, r.top);
+      if (typeof floatXP === 'function') floatXP(done === habit.target ? 25 : 5, r.left, r.top);
+    }
+
+    addXP(done === habit.target ? 25 : 5);
+
     if (done === habit.target) {
       showToast('🎉 ' + habit.emoji + ' ' + habit.name + ' — weekly goal done!');
-      addXP(25);
     } else {
       showToast(habit.emoji + ' ' + (habit.target - done) + ' more to hit your goal!');
-      addXP(5);
     }
   } else {
     habit.completions[wk] = Math.max(0, cur - 1);
     showToast('Undone — no worries 🌿');
   }
+
   saveHabits(habits);
   renderHabits();
 }
@@ -137,6 +158,7 @@ function openAddHabit() {
   document.getElementById('habit-name-inp').value = '';
   document.getElementById('habit-target-inp').value = 4;
   document.getElementById('habit-emoji-sel').value = '✨';
+  document.getElementById('habit-type-inp').value = 'binary'; // ← add this
   openModal('modal-habit');
 }
 
@@ -148,24 +170,28 @@ function editHabit(idx) {
   document.getElementById('habit-name-inp').value = h.name;
   document.getElementById('habit-target-inp').value = h.target;
   document.getElementById('habit-emoji-sel').value = h.emoji || '✨';
+  document.getElementById('habit-type-inp').value = h.type || 'binary';
   openModal('modal-habit');
 }
 
 function saveHabitForm() {
-  const name = document.getElementById('habit-name-inp').value.trim();
+  const name   = document.getElementById('habit-name-inp').value.trim();
   const target = parseInt(document.getElementById('habit-target-inp').value) || 4;
-  const emoji = document.getElementById('habit-emoji-sel').value;
+  const emoji  = document.getElementById('habit-emoji-sel').value;
+  const type   = document.getElementById('habit-type-inp')?.value || 'binary';
+
   if (!name) { showToast('Give your habit a name 🌿'); return; }
 
   const habits = getHabits();
   if (editingIdx !== null) {
-    habits[editingIdx].name = name;
+    habits[editingIdx].name   = name;
     habits[editingIdx].target = Math.min(Math.max(target, 1), 7);
-    habits[editingIdx].emoji = emoji;
+    habits[editingIdx].emoji  = emoji;
+    habits[editingIdx].type   = type;
   } else {
     habits.push({
       id: 'h' + Date.now(),
-      name, emoji,
+      name, emoji, type,
       target: Math.min(Math.max(target, 1), 7),
       completions: {},
     });

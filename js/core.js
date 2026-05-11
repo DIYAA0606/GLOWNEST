@@ -42,6 +42,45 @@ function showToast(msg, dur = 2800) {
   c.appendChild(t);
   setTimeout(() => { t.classList.add('out'); setTimeout(() => t.remove(), 300); }, dur);
 }
+// ===== MICRO DOPAMINE HELPERS =====
+
+// Confetti burst at coordinates
+function confettiBurst(x, y) {
+  const colors = ['var(--accent)','var(--accent2)','var(--success)','#f0c898','#c8b4f0'];
+  for (let i = 0; i < 12; i++) {
+    const dot = document.createElement('div');
+    dot.className = 'confetti-dot';
+    const size = 5 + Math.random() * 6;
+    dot.style.cssText = `width:${size}px;height:${size}px;
+      left:${x + (Math.random()-0.5)*60}px;top:${y}px;
+      background:${colors[Math.floor(Math.random()*colors.length)]};
+      animation-duration:${0.8 + Math.random()*0.5}s;
+      animation-delay:${Math.random()*0.15}s`;
+    document.body.appendChild(dot);
+    setTimeout(() => dot.remove(), 1400);
+  }
+}
+
+// Float XP number
+function floatXP(amt, x, y) {
+  const el = document.createElement('div');
+  el.className = 'xp-float';
+  el.textContent = '+' + amt + ' XP';
+  el.style.cssText = `left:${x}px;top:${y}px`;
+  document.body.appendChild(el);
+  setTimeout(() => el.remove(), 1000);
+}
+
+// Wrap addXP to show float
+const _addXP = addXP;
+// Override in dashboard/habit context with coords
+function addXPAt(amt, el) {
+  _addXP(amt);
+  if (el) {
+    const r = el.getBoundingClientRect();
+    floatXP(amt, r.left + r.width/2, r.top);
+  } else { _addXP(0); } // already added
+}
 
 // ===== NAVIGATE =====
 function navigate(page, pushHistory = true) {
@@ -167,7 +206,21 @@ function initApp() {
   document.querySelectorAll('.nav-item').forEach(btn => {
     btn.addEventListener('click', () => navigate(btn.dataset.page));
   });
-
+  // FAB toggle
+window.toggleFab = function() {
+  const actions = document.getElementById('fab-actions');
+  const btn = document.getElementById('fab-btn');
+  if (!actions) return;
+  const open = actions.classList.toggle('open');
+  if (btn) btn.textContent = open ? '✕' : '＋';
+};
+window.closeFab = function() {
+  const actions = document.getElementById('fab-actions');
+  const btn = document.getElementById('fab-btn');
+  if (actions) actions.classList.remove('open');
+  if (btn) btn.textContent = '＋';
+};
+  const validPages = ['landing','dashboard','habits','wellness','fitness','schedule','analytics','rewards'];
   // Modal close on backdrop click
   document.querySelectorAll('.modal-backdrop').forEach(m => {
     m.addEventListener('click', e => {
@@ -186,7 +239,7 @@ function initApp() {
   // 2. Else returning users → dashboard, new users → landing
   const hashPage = window.location.hash.replace('#', '');
   const returning = Store.get('returning', false);
-  const validPages = ['landing','dashboard','habits','wellness','analytics','rewards'];
+  
 
   if (hashPage && validPages.includes(hashPage)) {
     navigate(hashPage, false); // already in history, don't push again

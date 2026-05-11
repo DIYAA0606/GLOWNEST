@@ -51,6 +51,8 @@ function renderDashboard() {
 
   // Weekly snapshot
   renderWeeklySnapshot();
+  renderTodayStrip();
+  renderDailyTip('daily-tip-exit');
 }
 
 // ===== SCORE RING =====
@@ -181,6 +183,35 @@ function initMoodModal() {
       closeModal('modal-mood');
     });
   });
+}
+// Today strip encouragement
+function renderTodayStrip() {
+  const msgs = [
+    'One thing at a time. You\'ve got this 🌿',
+    'Start with water. Everything else can wait.',
+    'Low energy days are valid days too.',
+    'You showed up. That already counts.',
+    'Progress over perfection, always.',
+  ];
+  const el = document.getElementById('today-encouragement');
+  if (el) el.textContent = msgs[new Date().getDate() % msgs.length];
+
+  // Quick wins
+  const wins = document.getElementById('today-wins');
+  if (wins) {
+    const h = State.hydration;
+    const moodDone = !!State.mood;
+    wins.innerHTML = [
+      h >= 4 ? '<span class="badge badge-accent">💧 Hydrated</span>' : '',
+      moodDone ? '<span class="badge badge-accent">😌 Mood logged</span>' : '',
+    ].join('');
+  }
+}
+
+function resetTodayFocus() {
+  const btn = document.getElementById('today-water');
+  if (btn) { btn.classList.remove('done'); btn.innerHTML = '💧 Log Water'; }
+  showToast('Fresh start ✨ You\'ve got this.');
 }
 
 // ===== LISTEN FOR PAGE CHANGE =====
