@@ -100,6 +100,7 @@ function navigate(page, pushHistory = true) {
     // Trigger page render
     window.dispatchEvent(new CustomEvent('pagechange', { detail: page }));
     window.scrollTo({ top: 0, behavior: 'smooth' });
+    closeMobileMenu();
   }
 }
 
@@ -109,6 +110,16 @@ window.addEventListener('popstate', (e) => {
   const page = e.state?.page || 'landing';
   navigate(page, false); // false = don't push again, we're already moving through history
 });
+// ===== MOBILE MENU =====
+function toggleMobileMenu() {
+  document.getElementById('mobile-sidebar')?.classList.toggle('open');
+  document.getElementById('mobile-overlay')?.classList.toggle('show');
+}
+
+function closeMobileMenu() {
+  document.getElementById('mobile-sidebar')?.classList.remove('open');
+  document.getElementById('mobile-overlay')?.classList.remove('show');
+}
 
 // ===== MODAL =====
 function openModal(id) {

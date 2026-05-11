@@ -743,3 +743,260 @@ body.bad-day-mode {
   transition: all .5s var(--ease);
   filter: drop-shadow(0 4px 8px var(--glow));
 }
+/* ===== MOBILE HAMBURGER NAV ===== */
+
+.mobile-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 300;
+  height: 64px;
+
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  padding: 0 16px;
+
+  background: var(--surface);
+  backdrop-filter: blur(18px);
+
+  border-bottom: 1px solid var(--border);
+}
+
+.mobile-logo {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  color: var(--accent);
+}
+
+.hamburger-btn {
+  width: 42px;
+  height: 42px;
+
+  border-radius: 12px;
+
+  background: var(--bg2);
+
+  color: var(--text);
+
+  font-size: 1.2rem;
+}
+
+.mobile-overlay {
+  position: fixed;
+  inset: 0;
+
+  background: rgba(0,0,0,0.35);
+
+  opacity: 0;
+  pointer-events: none;
+
+  transition: 0.25s;
+
+  z-index: 350;
+}
+
+.mobile-overlay.show {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.mobile-sidebar {
+  position: fixed;
+
+  top: 0;
+  left: 0;
+
+  width: 260px;
+  height: 100vh;
+
+  background: var(--bg);
+
+  border-right: 1px solid var(--border);
+
+  z-index: 400;
+
+  padding: 20px 14px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  transform: translateX(-100%);
+
+  transition: transform 0.3s ease;
+}
+
+.mobile-sidebar.open {
+  transform: translateX(0);
+}
+
+.mobile-sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 18px;
+}
+
+.close-mobile-menu {
+  width: 36px;
+  height: 36px;
+
+  border-radius: 10px;
+
+  background: var(--bg2);
+
+  color: var(--text);
+}
+
+.mobile-sidebar .nav-item {
+  flex-direction: row;
+  justify-content: flex-start;
+
+  font-size: 0.9rem;
+
+  padding: 12px 14px;
+
+  border-radius: 14px;
+}
+
+.mobile-sidebar .nav-icon {
+  font-size: 1.1rem;
+}
+
+/* DESKTOP */
+@media (min-width: 768px) {
+
+  .mobile-topbar,
+  .mobile-sidebar,
+  .mobile-overlay {
+    display: none;
+  }
+}
+
+/* MOBILE */
+@media (max-width: 767px) {
+
+  .sidebar {
+    display: none !important;
+  }
+
+  .main-content {
+    padding-top: 14px;
+  }
+
+  .bottom-nav {
+    display: none !important;
+  }
+}
+/* ===== MOBILE DASHBOARD FIXES ===== */
+
+@media (max-width: 767px) {
+
+  /* overall spacing */
+  .main-content {
+    padding: 14px 14px 90px;
+  }
+
+  /* mobile topbar fixed */
+  .mobile-topbar {
+    position: sticky;
+    top: 0;
+  }
+
+  /* ALL dashboard 2-column layouts become single */
+  .grid-2 {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* score + hydration cards */
+  .score-display {
+    transform: scale(0.92);
+  }
+
+  /* hydration overflow fix */
+  .hydration-grid {
+    gap: 6px;
+  }
+
+  .water-drop {
+    font-size: 1.3rem;
+  }
+
+  /* quick actions */
+  .card.card-sm.flex.items-center.gap-8 {
+    padding: 16px;
+    min-height: 78px;
+  }
+
+  .card.card-sm.flex.items-center.gap-8 .text-sm {
+    font-size: 0.9rem;
+  }
+
+  .card.card-sm.flex.items-center.gap-8 .text-xs {
+    font-size: 0.72rem;
+  }
+
+  /* quote card better proportions */
+  .quote-card {
+    padding: 20px 18px;
+  }
+
+  .quote-text {
+    font-size: 0.92rem;
+    line-height: 1.5;
+  }
+
+  /* habits card */
+  #weekly-snapshot {
+    gap: 12px;
+  }
+
+  /* reduce giant spacing */
+  .mb-16 {
+    margin-bottom: 12px;
+  }
+
+  /* today's focus buttons */
+  .today-actions {
+    flex-direction: column;
+  }
+
+  .today-pill {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* section titles */
+  .section-title {
+    font-size: 0.98rem;
+  }
+
+  /* quick actions stack cleaner */
+  [data-quick] {
+    width: 100%;
+  }
+
+  /* hydration card specifically */
+  #hydration-drops {
+    justify-content: center;
+  }
+
+  /* glow score card alignment */
+  .card.flex.items-center.gap-12 {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  /* better card radius */
+  .card {
+    border-radius: 22px;
+  }
+
+  /* FAB positioning */
+  .fab-wrap {
+    bottom: 20px;
+    right: 16px;
+  }
+}

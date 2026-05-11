@@ -215,7 +215,14 @@
 
   <!-- Main content area -->
   <div style="flex:1;overflow-x:hidden">
+<!-- ===== MOBILE TOPBAR ===== -->
+<div class="mobile-topbar">
+  <button class="hamburger-btn" onclick="toggleMobileMenu()">
+    ☰
+  </button>
 
+  <div class="mobile-logo">🌿 GlowNest</div>
+</div>
     <!-- ===== DASHBOARD PAGE ===== -->
     <div id="page-dashboard" class="page">
       <div class="main-content">
@@ -662,12 +669,50 @@
   </div><!-- /main area -->
 </div><!-- /app-shell -->
 
-<!-- ===== BOTTOM NAV (mobile) ===== -->
-<button class="nav-item" data-page="dashboard"><span class="nav-icon">🏠</span><span>Home</span></button>
-<button class="nav-item" data-page="habits"><span class="nav-icon">✅</span><span>Habits</span></button>
-<button class="nav-item" data-page="fitness"><span class="nav-icon">🏃</span><span>Fitness</span></button>
-<button class="nav-item" data-page="wellness"><span class="nav-icon">🥗</span><span>Food</span></button>
-<button class="nav-item" data-page="schedule"><span class="nav-icon">🗓️</span><span>Schedule</span></button>
+
+<!-- ===== MOBILE OVERLAY ===== -->
+<div class="mobile-overlay" id="mobile-overlay" onclick="closeMobileMenu()"></div>
+
+<!-- ===== MOBILE SIDEBAR ===== -->
+<aside class="mobile-sidebar" id="mobile-sidebar">
+
+  <div class="mobile-sidebar-header">
+    <div class="sidebar-logo">GlowNest</div>
+
+    <button class="close-mobile-menu" onclick="closeMobileMenu()">
+      ✕
+    </button>
+  </div>
+
+  <button class="nav-item" data-page="dashboard">
+    <span class="nav-icon">🏠</span> Dashboard
+  </button>
+
+  <button class="nav-item" data-page="habits">
+    <span class="nav-icon">✅</span> Habits
+  </button>
+
+  <button class="nav-item" data-page="wellness">
+    <span class="nav-icon">🥗</span> Wellness
+  </button>
+
+  <button class="nav-item" data-page="fitness">
+    <span class="nav-icon">🏃</span> Fitness
+  </button>
+
+  <button class="nav-item" data-page="schedule">
+    <span class="nav-icon">🗓️</span> Schedule
+  </button>
+
+  <button class="nav-item" data-page="analytics">
+    <span class="nav-icon">📊</span> Analytics
+  </button>
+
+  <button class="nav-item" data-page="rewards">
+    <span class="nav-icon">🎁</span> Rewards
+  </button>
+
+</aside>
 
 <!-- ===== MODALS ===== -->
 
